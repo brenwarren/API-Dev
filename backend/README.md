@@ -79,7 +79,8 @@ You will need to provide detailed documentation of your API endpoints including 
 - Request Arguments: None
 - Returns: An object with a single key, `categories`, that contains an object of `id: category_string` key: value pairs.
 
-```json
+
+```
 {
   "1": "Science",
   "2": "Art",
@@ -88,6 +89,60 @@ You will need to provide detailed documentation of your API endpoints including 
   "5": "Entertainment",
   "6": "Sports"
 }
+```
+
+### API Testing Documentation
+
+All API endpoints are tested using Python’s `unittest` framework in `backend/test_flaskr.py`. The tests cover:
+
+- **Success and Error Cases:**  
+  Each endpoint has at least one test for expected (successful) behavior and one for error handling (e.g., missing data, invalid IDs).
+
+- **CRUD Operations:**  
+  Tests verify that GET, POST, DELETE operations work as intended and that changes persist in the database.
+
+- **Response Validation:**  
+  All tests check that API responses match the expected format and status codes.
+
+#### Example Test Coverage
+
+- `GET /categories`:  
+  - Success: Returns all categories.  
+  - Error: Returns 404 if no categories exist.
+
+- `GET /questions`:  
+  - Success: Returns paginated questions.  
+  - Error: Returns 404 if no questions exist.
+
+- `POST /questions`:  
+  - Success: Adds a new question.  
+  - Error: Returns 422 for incomplete data.
+
+- `DELETE /questions/<id>`:  
+  - Success: Deletes a question and confirms removal.  
+  - Error: Returns 404 for non-existent question.
+
+- `POST /questions/search`:  
+  - Success: Returns questions matching search term.
+
+- `GET /categories/<id>/questions`:  
+  - Success: Returns questions for a category.
+
+- `POST /quizzes`:  
+  - Success: Returns a random question for the quiz.
+
+- **Error Handlers:**  
+  Custom tests for 404 and 422 error responses.
+
+#### Running Tests
+
+To run all tests, use:
+
+```bash
+dropdb trivia_test
+createdb trivia_test
+psql trivia_test < trivia.psql
+python test_flaskr.py
 ```
 
 ## Testing
