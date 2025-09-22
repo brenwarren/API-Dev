@@ -35,10 +35,10 @@ class TriviaTestCase(unittest.TestCase):
             db.session.remove()
             db.drop_all()
 
-    """
-    TODO
-    Write at least one test for each test for successful operation and for expected errors.
-    """
+    # """
+    # TODO
+    # Write at least one test for each test for successful operation and for expected errors.
+    # """
         # GET /categories
         def test_get_categories_success(self):
             res = self.client.get('/categories')
