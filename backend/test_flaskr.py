@@ -10,10 +10,11 @@ class TriviaTestCase(unittest.TestCase):
 
     def setUp(self):
         """Define test variables and initialize app."""
-        self.database_name = "trivia_test"
-        self.database_user = "postgres"
-        self.database_password = "password"
-        self.database_host = "localhost:5432"
+        # Load secrets from environment variables, fallback to defaults
+        self.database_name = os.getenv('TEST_DB_NAME', 'trivia_test')
+        self.database_user = os.getenv('TEST_DB_USER', 'postgres')
+        self.database_password = os.getenv('TEST_DB_PASSWORD', 'password')
+        self.database_host = os.getenv('TEST_DB_HOST', 'localhost:5432')
         self.database_path = f"postgresql://{self.database_user}:{self.database_password}@{self.database_host}/{self.database_name}"
 
         # Create app with the test configuration
